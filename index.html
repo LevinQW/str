@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebApp</title>
     <style>
         body {
@@ -22,9 +23,10 @@
             color: white;
         }
         .button-container {
-            position: absolute;
-            top: 60%;
-            transform: translateY(-50%);
+            display: flex;
+            height: 50px;
+            width: 100%;
+            justify-content: center;
         }
         .button {
             background-color: green;
@@ -35,9 +37,13 @@
             cursor: pointer;
             text-align: center;
             border: solid 3px;
-            border-radius: 10px;
+            border-radius: 20px;
             border-color:#006400 ;
-            
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
         }
         .text_contain{
             display: flex;
@@ -69,27 +75,45 @@
             font-size: 15px;
         }
         .profile_icon{
-            height: 50px;
-            width: 50px;
+            height: 30px;
+            width: 30px;
             margin-left: 10px;
+        }
+        .timer_container{
+            height: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .timer{
+            color:white;
         }
     </style>
 </head>
 <body>
+
     <div class="info_container">
         <img class="profile_icon" src="profile-circle-svgrepo-com.svg" alt="s">
         <div id="username" class="username">@____</div>
     </div>
-    <div class="balance_container">
-        
+
+    <!-- <div class="balance_container">
         <div class="balance">SV 10000</div>
-    </div>
+    </div> -->
+
     <div class="text_contain">
         <div class="text" id="text">oooooo</div>
     </div>
+
     <div class="button-container">
-        <button class="button" onclick="randomizeText()">Кнопай</button>
+        <button id="button" class="button" onclick="randomizeText()">Кнопка</button>
     </div>
+
+    <div class="timer_container">
+        <div id="timer" class="timer"></div>
+    </div>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function randomizeText() {
@@ -103,10 +127,36 @@
             }
 
             textElement.innerText = newText;
+            document.getElementById("button").style.backgroundColor = "#A9A9A9"
+            document.getElementById("button").style.borderColor = "#696969"
+            document.getElementById('button').disabled = true;
+            run()
         }
 
         let tg = window.Telegram.WebApp;
         document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
+
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function run() {
+            document.getElementById("timer").innerText = "5 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "4 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "3 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "2 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "1 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = ""
+
+            document.getElementById("button").style.backgroundColor = "green"
+            document.getElementById("button").style.borderColor = "#006400"
+            document.getElementById('button').disabled = false;
+        }
     </script>
     
 </body>
