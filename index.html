@@ -160,8 +160,8 @@
             }
 
             textElement.innerText = newText;
-            document.getElementById("button").style.backgroundColor = "#A9A9A9"
-            document.getElementById("button").style.borderColor = "#696969"
+            
+            document.getElementById("button").style.border = "3px solid rgba(255, 92, 92, .2)"
             document.getElementById('button').disabled = true;
             run()
         }
@@ -186,8 +186,8 @@
             await sleep(1000); 
             document.getElementById("timer").innerText = ""
 
-            document.getElementById("button").style.backgroundColor = "green"
-            document.getElementById("button").style.borderColor = "#006400"
+            
+            document.getElementById("button").style.border = "2px solid rgba(255, 255, 255, .2)"
             document.getElementById('button').disabled = false;
         }
     </script>
