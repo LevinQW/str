@@ -6,18 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <title>WebApp</title>
     <style>
+        @font-face {
+            font-family: 'light';
+            src: url('NEXT ART_Light.otf');
+        }
+        @font-face {
+            font-family: 'regularr';
+            src: url('NEXT ART_Regular.otf');
+        }
+        @font-face {
+            font-family: 'boldd';
+            src: url('NEXT ART_Bold.otf');
+        }
+
+
         body {
-            background-color: #252525;
+            background-position: center;
+            background-image: url("1662225436_2-kartinkin-net-p-fon-kosmos-chernii-so-zvezdami-oboi-2.jpg");
             display: flex;
             flex-direction: column;
-            
             align-items: center;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
         }
         .text {
-            
+            font-family: 'boldd';
             text-align: center;
             font-size: 24px;
             color: white;
@@ -29,21 +43,23 @@
             justify-content: center;
         }
         .button {
-            background-color: green;
+            /* background-color: green; */
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px);
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, .2);
             color: white;
-            border: none;
             padding: 15px 30px;
             font-size: 18px;
             cursor: pointer;
             text-align: center;
-            border: solid 3px;
-            border-radius: 20px;
-            border-color:#006400 ;
+            border-radius: 15px;
             height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 250px;
+            font-family: 'light';
         }
         .text_contain{
             display: flex;
@@ -73,6 +89,8 @@
             color: white;
             margin-left: 10px;
             font-size: 15px;
+            font-family: 'regularr';
+            
         }
         .profile_icon{
             height: 30px;
@@ -89,13 +107,28 @@
         .timer{
             color:white;
         }
+        .icon_and_username{
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px);
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, .2);
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
 
     <div class="info_container">
-        <img class="profile_icon" src="profile-circle-svgrepo-com.svg" alt="s">
-        <div id="username" class="username">@____</div>
+        <div class="icon_and_username">
+            <img class="profile_icon" src="profile-circle-svgrepo-com.svg" alt="s">
+        <div id="username" class="username">@</div>
+        </div>
+        
     </div>
 
     <!-- <div class="balance_container">
@@ -107,7 +140,7 @@
     </div>
 
     <div class="button-container">
-        <button id="button" class="button" onclick="randomizeText()">Кнопка</button>
+        <button id="button" class="button" onclick="randomizeText()">клик</button>
     </div>
 
     <div class="timer_container">
@@ -134,7 +167,6 @@
         }
 
         let tg = window.Telegram.WebApp;
-        tg.expand(); 
         document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
 
 
