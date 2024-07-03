@@ -144,6 +144,10 @@
         .access{
             display: none;
         }
+        .tgid{
+            color: white;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -151,7 +155,10 @@
     <div class="info_container">
         <div class="icon_and_username">
             <img class="profile_icon" src="profile-circle-svgrepo-com.svg" alt="s">
-        <div id="username" class="username">@sasavot0</div>
+        <div id="username" class="username">@----</div>
+        </div>
+        <div class="tgid" id="tgid">
+            asd
         </div>
         
     </div>
@@ -181,56 +188,60 @@
     
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
     <script>
         let tg = window.Telegram.WebApp;
+        tg.expand()
+        document.getElementById("tgid").innerText = tg.initDataUnsafe.user.id
+
         if (tg.initDataUnsafe.user.id === 469726457){
             function randomizeText() {
-            const textElement = document.getElementById('text');
-            const characters = 'abcdefghijklmnopqrstuvwxyz01234567890123456789';
-            let newText = '';
-
-            for (let i = 0; i < textElement.innerText.length; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                newText += characters[randomIndex];
-            }
-
-            textElement.innerText = newText;
+                const textElement = document.getElementById('text');
+                const characters = 'abcdefghijklmnopqrstuvwxyz01234567890123456789';
+                let newText = '';
         
-            document.getElementById("button").style.border = "3px solid rgba(255, 92, 92, .2)"
-            document.getElementById('button').disabled = true;
-            run()
+                for (let i = 0; i < textElement.innerText.length; i++) {
+                    const randomIndex = Math.floor(Math.random() * characters.length);
+                    newText += characters[randomIndex];
+                }
+        
+                textElement.innerText = newText;
+                
+                document.getElementById("button").style.border = "3px solid rgba(255, 92, 92, .2)"
+                document.getElementById('button').disabled = true;
+                run()
             }
-
-    
-        document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
-
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
+        
             
-        async function run() {
-            document.getElementById("timer").innerText = "5 seconds"
-            await sleep(1000); 
-            document.getElementById("timer").innerText = "4 seconds"
-            await sleep(1000); 
-            document.getElementById("timer").innerText = "3 seconds"
-            await sleep(1000); 
-            document.getElementById("timer").innerText = "2 seconds"
-            await sleep(1000); 
-            document.getElementById("timer").innerText = "1 seconds"
-            await sleep(1000); 
-            document.getElementById("timer").innerText = ""
-
+            document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
         
-            document.getElementById("button").style.border = "2px solid rgba(255, 255, 255, .2)"
-            document.getElementById('button').disabled = false;
+        
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function run() {
+                document.getElementById("timer").innerText = "5 seconds"
+                await sleep(1000); 
+                document.getElementById("timer").innerText = "4 seconds"
+                await sleep(1000); 
+                document.getElementById("timer").innerText = "3 seconds"
+                await sleep(1000); 
+                document.getElementById("timer").innerText = "2 seconds"
+                await sleep(1000); 
+                document.getElementById("timer").innerText = "1 seconds"
+                await sleep(1000); 
+                document.getElementById("timer").innerText = ""
+        
+                
+                document.getElementById("button").style.border = "2px solid rgba(255, 255, 255, .2)"
+                document.getElementById('button').disabled = false;
+            }
+        } else {
+            document.getElementById("main_window").style.display = "none";
+            document.getElementById("access").style.display = "display";
+        
         }
-} else {
-    document.getElementById("main_window").style.display = "none";
-    document.getElementById("access").style.display = "display";
-    document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
-}
+    
     </script>
     
 </body>
