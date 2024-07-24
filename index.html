@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +25,15 @@
             font-family: 'somic_regular';
             src: url('01_NTSomic-Regular.ttf');
         }
+        @font-face {
+            font-family: 'nomer';
+            src: url('RoadNumbers2.0.ttf');
+        }
 
 
         body {
             background-position: left;
-            background-image: url("Frame 2bg (Средний).png");
+            background-color: gray;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -40,18 +43,22 @@
             
         }
         .text {
-            font-family: 'somic_medium';
+            font-family: 'nomer';
             text-align: center;
-            font-size: 30px;
+            font-size: 80px;
             color: white;
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-left: 3px;
+            margin-right: 3px;
+            color: black;
         }
         .button-container {
             display: flex;
+            flex-direction: column;
             height: 50px;
             width: 100%;
             justify-content: center;
+            align-items: center;
+            margin-top: 10px;   
         }
         .button {
             /* background-color: green; */
@@ -116,6 +123,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 20px;
         }
         .timer{
             color:white;
@@ -153,17 +161,62 @@
             margin-left: 10px;
         }
         .text0{
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(3px);
-            background: rgba(255, 255, 255, 0.02);
+            
+            background: black;
             border: 2px solid rgba(255, 255, 255, .2);
             display: flex;
             border-radius: 10px;
             height: 40px;
-            
+            width: 300px;
+            height: 75px;
+            align-items: center;
+            /*justify-content: center; */
+            margin-bottom: 7px;
+        }
+
+        .region{
+            display: flex;
+            flex-direction: column;
+            width: 50px;
+            align-items: center;
+            height: 70px;
+            margin-left: 2px;
+            width: 25%;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .reg{
+            color: white;
+            font-size: 20px;
+            font-family: 'nomer';
+            color: black;
+            font-size: 55px;
+        }
+
+        .country{
+            color: white;
+            font-size: 20px;
+            color: black;
+            font-family: 'regularr';
+        }
+        .left_side{
+            display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 7px;
+            width: 219px;
+            height: 70px;
+            margin-left: 2px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .choose{
+            margin: 10px;
+            font-family: 'nomer';
+            font-size: 25px;
+            height: 50px;
+            width: 70px;
+            border-radius: 5px;
+            border: 2px solid black;
         }
     </style>
 </head>
@@ -186,12 +239,28 @@
 
         <div class="text_contain">
             <div class="text0">
-                <div class="text" id="text">oooooo</div>
+                <div class="left_side">
+                    <div class="text" id="text">aaaaa</div>
+                </div>
+                
+                <div class="region">
+                    <div id="reg" class="reg">01</div>
+                    
+                    <div class="country">rus</div>
+                </div>
             </div>
             
         </div>
 
         <div class="button-container">
+            <select class="choose" id="dropdown">
+                <option value="1">01</option>
+                <option value="2">05</option>
+                <option value="3">86</option>
+                <option value="4">186</option>
+                <option value="5">77</option>
+                <option value="6">777</option>
+            </select>
             <button id="button" class="button" onclick="randomizeText()">tap</button>
         </div>
 
@@ -214,48 +283,68 @@
         tg.expand()
         document.getElementById("tgid").innerText = tg.initDataUnsafe.user.id
 
-       
-            function randomizeText() {
-                const textElement = document.getElementById('text');
-                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890123456789';
-                let newText = '';
-        
-                for (let i = 0; i < textElement.innerText.length; i++) {
-                    const randomIndex = Math.floor(Math.random() * characters.length);
-                    newText += characters[randomIndex];
-                }
-        
-                textElement.innerText = newText;
-                
-                document.getElementById("button").style.border = "3px solid rgba(255, 92, 92, .2)"
-                document.getElementById('button').disabled = true;
-                run()
+        document.getElementById('dropdown').addEventListener('change', function() {var selectedValue = this.value})
+        document.getElementById('reg').innerText = selectedValue;
+
+        function randomizeText() {
+            const textElement = document.getElementById('text');
+            const letters = 'abekmhopctyx';
+            let numbers = '1234568790';
+            let newText = '';
+            newText += letters[Math.floor(Math.random() * letters.length)];
+            newText += numbers[Math.floor(Math.random() * numbers.length)];
+            newText += numbers[Math.floor(Math.random() * numbers.length)];
+            if (newText[1] === '0') and (newText[2] === '0');{
+                let numbers = '123456879';  
             }
-        
+            newText += numbers[Math.floor(Math.random() * numbers.length)];
+            newText += letters[Math.floor(Math.random() * letters.length)];
+            newText += letters[Math.floor(Math.random() * letters.length)];
+            textElement.innerText = newText;
             
-            document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
+            document.getElementById("button").style.border = "3px solid rgba(255, 92, 92, .2)"
+            document.getElementById('button').disabled = true;
+            run()
+        }
         
+        const textElement = document.getElementById('text');
+        const letters = 'abekmhopctyx';
+        let numbers = '1234568790';
+        let newText = '';
+        newText += letters[Math.floor(Math.random() * letters.length)];
+        newText += numbers[Math.floor(Math.random() * numbers.length)];
+        newText += numbers[Math.floor(Math.random() * numbers.length)];
+        if (newText[1] === '0') and (newText[2] === '0');{
+            let numbers = '123456879';  
+        };
+        newText += numbers[Math.floor(Math.random() * numbers.length)];
+        newText += letters[Math.floor(Math.random() * letters.length)];
+        newText += letters[Math.floor(Math.random() * letters.length)];
+        textElement.innerText = newText;
         
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
-            }
-            async function run() {
-                document.getElementById("timer").innerText = "5 seconds"
-                await sleep(1000); 
-                document.getElementById("timer").innerText = "4 seconds"
-                await sleep(1000); 
-                document.getElementById("timer").innerText = "3 seconds"
-                await sleep(1000); 
-                document.getElementById("timer").innerText = "2 seconds"
-                await sleep(1000); 
-                document.getElementById("timer").innerText = "1 seconds"
-                await sleep(1000); 
-                document.getElementById("timer").innerText = ""
-        
-                
-                document.getElementById("button").style.border = "2px solid rgba(255, 255, 255, .2)"
-                document.getElementById('button').disabled = false;
-            }
+        document.getElementById("username").innerText = "@" + tg.initDataUnsafe.user.username
+    
+    
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function run() {
+            document.getElementById("timer").innerText = "5 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "4 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "3 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "2 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = "1 seconds"
+            await sleep(1000); 
+            document.getElementById("timer").innerText = ""
+    
+            
+            document.getElementById("button").style.border = "2px solid rgba(255, 255, 255, .2)"
+            document.getElementById('button').disabled = false;
+        }
         
     
     </script>
