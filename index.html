@@ -54,9 +54,8 @@
         .button-container {
             display: flex;
             flex-direction: column;
-            height: 50px;
+            height: 10S0px;
             width: 100%;
-            justify-content: center;
             align-items: center;
             margin-top: 10px;   
         }
@@ -78,6 +77,8 @@
             justify-content: center;
             width: 250px;
             font-family: 'boldd';
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .text_contain{
             display: flex;
@@ -123,7 +124,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
         }
         .timer{
             color:white;
@@ -177,9 +177,9 @@
         .region{
             display: flex;
             flex-direction: column;
-            width: 50px;
+            
             align-items: center;
-            height: 70px;
+            height: 95%;
             margin-left: 2px;
             width: 25%;
             background-color: white;
@@ -204,7 +204,7 @@
             align-items: center;
             justify-content: center;
             width: 219px;
-            height: 70px;
+            height: 95%;
             margin-left: 2px;
             background-color: white;
             border-radius: 5px;
@@ -213,10 +213,16 @@
             margin: 10px;
             font-family: 'nomer';
             font-size: 25px;
-            height: 50px;
-            width: 70px;
+            height: 45px;
+            width: 60px;
+            
             border-radius: 5px;
             border: 2px solid black;
+        }
+        .username_and_id{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
     </style>
 </head>
@@ -225,12 +231,23 @@
     <div class="info_container">
         <div class="icon_and_username">
             <img class="profile_icon" src="profile-circle-svgrepo-com.svg" alt="s">
-        <div id="username" class="username">@----</div>
-        </div>
-        <div class="tgid" id="tgid">
-            asd
+            <div class="username_and_id">
+                <div id="username" class="username">@----</div>
+                <div class="tgid" id="tgid">
+                    asd
+                </div>
+            </div>
+            
         </div>
         
+        <select onchange="updateReg()" class="choose" id="dropdown">
+                <option value="01">01</option>
+                <option value="05">05</option>
+                <option value="86">86</option>
+                <option value="95">95</option>
+                <option value="77">77</option>
+                <option value="777">777</option>
+            </select>
     </div>
     <div id="main_window" class="main_window">
         <div class="balance_container">
@@ -253,14 +270,7 @@
         </div>
 
         <div class="button-container">
-            <select class="choose" id="dropdown">
-                <option value="1">01</option>
-                <option value="2">05</option>
-                <option value="3">86</option>
-                <option value="4">186</option>
-                <option value="5">77</option>
-                <option value="6">777</option>
-            </select>
+            
             <button id="button" class="button" onclick="randomizeText()">tap</button>
         </div>
 
@@ -283,8 +293,11 @@
         tg.expand()
         document.getElementById("tgid").innerText = tg.initDataUnsafe.user.id
 
-        document.getElementById('dropdown').addEventListener('change', function() {var selectedValue = this.value})
-        document.getElementById('reg').innerText = selectedValue;
+        
+        function updateReg(){
+            var selectedValue = document.getElementById('dropdown').value;
+            document.getElementById('reg').innerText = selectedValue;
+        }
 
         function randomizeText() {
             const textElement = document.getElementById('text');
@@ -302,7 +315,7 @@
             newText += letters[Math.floor(Math.random() * letters.length)];
             textElement.innerText = newText;
             
-            document.getElementById("button").style.border = "3px solid rgba(255, 92, 92, .2)"
+            document.getElementById("button").style.border = "3px solid red"
             document.getElementById('button').disabled = true;
             run()
         }
